@@ -1,0 +1,43 @@
+{% extends "base.html.j2" %}
+
+{% block body %}
+
+    <br>
+    <div class="content-block" style="text-align: center">
+        <br>
+        <h2>NPC Info</h2>
+        <form method="POST" action="npc-list" enctype="multipart/form-data">
+            Name: <br> <input type="text" name="npcName" required>
+            <br>
+            <br>
+            Descripton: <br> <textarea name="npcDesc" rows="6" cols="30" required></textarea>
+            <br>
+            <br>
+            <!--Image: <br> <input style="text-align-last: center; margin-bottom: 40px;" type="file" name="npcImage" accept="image/*">
+            <br-->
+            <span>Related Locations</span>
+            <br>
+            <div class="flexbox-container">
+                {% for i in locInfo %}
+                    <button type="button" class="related-element" id="{{i['name']}}" onclick="AddRelatedLocation('{{i['name']}}')">{{i['name']}}</button>
+                    <input type="hidden" id="{{i['name']}}-hidden" name="related-location" value="false">
+                {% endfor %}
+            </div>
+            <br>
+            <span>Tags</span>
+            <br>
+            <div class="flexbox-container">
+                {% for i in tagInfo %}
+                    <button type="button" class="related-element" id="{{i['tag_name']}}" onclick="AddRelatedTag('{{i['tag_name']}}')">{{i['tag_name']}}</button>
+                    <input type="hidden" id="{{i['tag_name']}}-hidden" name="related-tag" value="false">
+                {% endfor %}
+            </div>
+            Encountered: <input id="checkbox" type="checkbox" name="locEncountered">
+            <br>
+            <br>
+            <input id="npc-submit" type="submit">
+        </form>
+    </div>
+
+
+{% endblock %}

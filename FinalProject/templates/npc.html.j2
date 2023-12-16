@@ -1,0 +1,35 @@
+{% extends "base.html.j2" %}
+
+{% block body %}
+
+    <br>
+    <div>
+        <h1>{{info[0]['name']}}</h1>
+        <div>
+            <img class="header-npc-icon" src="static/images/{{info[0]['name']}}.png" alt="{{info[0]['name']}}">
+        </div>
+    </div>
+
+    <div class="transparent-block">
+    {% for tag in tags %}
+        <span class="big-tag-icon">{{tag['tag_name']}}</span>
+    {% endfor %}
+    </div>
+
+    <div id="description-block" class="content-block">
+        <p>{{info[0]['description']}}</p>
+    </div>
+
+    {% if locations | length > 0 %}
+    <div class="content-block">
+        <p style="font-size: 20px"><u>Related Locations:</u></p>
+        <ul>
+        {% for row in locations %}
+            <li><a class="npc-link" href="location?name={{row['location_name']}}"><b>{{row['location_name']}}</b></a></li>
+        {% endfor %}
+        </ul>
+        <br>
+    </div>
+    {% endif %}
+
+{% endblock %}
