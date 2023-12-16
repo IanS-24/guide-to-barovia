@@ -1,0 +1,25 @@
+{% extends "base.html.j2" %}
+
+{% block body %}
+
+    <br>
+    <h1>{{info[0]['name']}}</h1>
+    <div id="description-block" class="content-block">
+        <p>{{info[0]['description']}}</p>
+    </div>
+
+    {% if npcs | length > 0 %}
+    <div class="content-block" style="height: 200px">
+        <p style="font-size: 20px"><u>Related NPCs:</u></p>
+        <div id="big-npc-container">
+        {% for row in npcs %}
+            <a href="npc?name={{row['npc_name']}}">
+                <img class="big-npc-icon" src="static/images/{{row['npc_name']}}.png" alt="{{row['npc_name']}}">
+            </a>
+        {% endfor %}
+        </div>
+        <br>
+    </div>
+    {% endif %}
+
+{% endblock %}
